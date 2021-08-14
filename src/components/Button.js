@@ -1,7 +1,9 @@
-import React from 'react'
+import React from 'react';
+
+import './button.css';
 
 export default function Button(props){
     return (
-        <button onClick={props.onClickHandler}>{props.displayText}</button>
+        <button className="btn" onClick={props.onClickHandler}>{props.displayText}</button>
     );
 }

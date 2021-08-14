@@ -1,0 +1,10 @@
+.btn{
+    width: 120px;
+    padding: 10px;
+    color:white;
+    background-color: cadetblue;
+}
+
+.btn:hover{
+    background-color: rgb(72, 142, 145);
+}

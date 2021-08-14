@@ -1,0 +1,9 @@
+.calculator{
+    margin: auto;
+    max-width: 450px;
+    text-align: center;
+}
+
+.calc-numpad{
+    margin-bottom: 10px;
+}

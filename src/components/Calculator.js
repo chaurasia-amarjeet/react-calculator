@@ -3,15 +3,17 @@ import React from 'react';
 import Button from './Button';
 import Label from './Label';
 
+import './calculator.css';
+
 export default class Calculator extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             operator: '', 
             input1: '', 
-            input2: '', 
-            calculate: false, 
-            output: 0
+            input2: '',
+            output: 0,
+            expression: ''
         };
 
         this.updateCurrentValue = this.updateCurrentValue.bind(this);
@@ -22,7 +24,7 @@ export default class Calculator extends React.Component{
     updateCurrentValue(value){
         this.setState((prevState) => ({
             input2: prevState.input2 + value,
-            calculate: false
+            expression: prevState.expression.concat(value)
         }));
     }
     
@@ -62,6 +64,7 @@ export default class Calculator extends React.Component{
         console.log('currentOperator :' + currentOperator);
         const prevOperator = this.state.operator;
         console.log('prevOperator :' + prevOperator);
+
         switch(prevOperator){
             case '':
                 this.setState((prevState) => ({
@@ -81,53 +84,66 @@ export default class Calculator extends React.Component{
             case '/':
                 this.divide();
                 break;
+            default:
+                break;
         }
 
-        if(currentOperator == '='){
+        if(currentOperator === '='){
             console.log("Inside = if block");
             this.setState(
                 {
                     operator: '', 
-                    input1: '',
-                    input2: '',
-                    calculate: true
+                    input1: '', 
+                    input2: ''
                 });
         }else{
-            this.setState({operator: currentOperator});
+            this.setState((prevState) => 
+                ({
+                    operator: currentOperator,
+                    expression:prevState.expression.concat(currentOperator)
+                }));
         }
     }
 
     resetValue(){
         this.setState(
-            {operator: '', 
-            input1: '', 
-            input2: '', 
-            calculate: false, 
-            output: 0});
+            {
+                operator: '', 
+                input1: '', 
+                input2: '',
+                output: 0,
+                expression: ''
+            });
     }
 
     render (){
         const numberArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
         return (
-            <div>
-                <Label value={"input1: " + this.state.input1}/>
-                <Label value={"input2: " + this.state.input2}/>
-                <Label value={"output: " +this.state.output}/>
+            <div className="calculator">
+                <div className="calc-labels">
+                    <Label value={"Expression : " + this.state.expression}/>
+                    <Label value={"Result : " +this.state.output}/>
+                </div>
 
-                {numberArray.map((number) => {
-                    return <Button 
-                    key = {number}
-                    displayText= {number} 
-                    onClickHandler={() => this.updateCurrentValue(`${number}`)}/>
-                })}
+                <div className="calc-numpad">
+                    {numberArray.map((number) => {
+                        return <Button 
+                        className="btn"
+                        key = {number}
+                        displayText= {number} 
+                        onClickHandler={() => this.updateCurrentValue(`${number}`)}/>
+                    })}
+                </div>
                 
-                <Button displayText="Reset Value" onClickHandler={this.resetValue}/>
-                <Button displayText="+" onClickHandler={() => this.calculate('+')}/>
-                <Button displayText="-" onClickHandler={() => this.calculate('-')}/>
-                <Button displayText="*" onClickHandler={() => this.calculate('*')}/>
-                <Button displayText="/" onClickHandler={() => this.calculate('/')}/>
-                <Button displayText="Calculate" onClickHandler={() => this.calculate('=')}/>
+                <div calc-operator>
+                    <Button displayText="+" onClickHandler={() => this.calculate('+')}/>
+                    <Button displayText="-" onClickHandler={() => this.calculate('-')}/>
+                    <Button displayText="*" onClickHandler={() => this.calculate('*')}/>
+                    <Button displayText="/" onClickHandler={() => this.calculate('/')}/>
+                    <Button displayText="Calculate" onClickHandler={() => this.calculate('=')}/>
+                    <Button displayText="Reset Value" onClickHandler={this.resetValue}/>
+                </div>
             </div>
         );
     }

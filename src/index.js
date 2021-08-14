@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import './index.css';
 import App from './components/App';
 
-const element = () => {
-    ReactDOM.hydrate(
-        <App />,
-        document.getElementById('root'),
-      );
-}
-
-setInterval(element, 1000);
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);

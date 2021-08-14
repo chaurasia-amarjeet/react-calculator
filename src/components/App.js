@@ -1,18 +1,15 @@
 import React from 'react';
 
 import Calculator from './Calculator';
+import Menu from './Menu';
 
 export default class App extends React.Component{
-    constructor(props){
-        super(props);
-    }
-
     render (){
         return (
             <div>
-                <h3 style={{textAlign: 'center'}}>Calcultor</h3>
+                <Menu />
                 <Calculator />
             </div>
-    );
- }
+        );
+    }
 }

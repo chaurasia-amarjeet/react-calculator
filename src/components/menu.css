@@ -1,0 +1,28 @@
+.menu ul{
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: aquamarine;
+    border: black solid 1px;;
+}
+
+.menu ul li{
+    float: left;
+}
+
+.menu ul li a{
+    text-decoration: none;
+    display: inline-block;
+    width: 100px;
+    background-color: aquamarine;
+    color: black;
+    padding: 10px;
+    font-weight: bold;
+    border-right: black solid 1px;
+    text-align: center;
+}
+
+.menu ul li a:hover{
+    background-color: rgb(63, 175, 138);
+}
