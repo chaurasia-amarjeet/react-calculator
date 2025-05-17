@@ -4,7 +4,7 @@ import Calculator from './Calculator';
 import Menu from './Menu';
 
 export default class App extends React.Component{
-    render (){
+    render(){
         return (
             <div>
                 <Menu />
