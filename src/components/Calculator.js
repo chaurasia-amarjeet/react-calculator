@@ -136,7 +136,7 @@ export default class Calculator extends React.Component{
                     })}
                 </div>
                 
-                <div calc-operator>
+                <div className='calc-operator'>
                     <Button displayText="+" onClickHandler={() => this.calculate('+')}/>
                     <Button displayText="-" onClickHandler={() => this.calculate('-')}/>
                     <Button displayText="*" onClickHandler={() => this.calculate('*')}/>
